@@ -1,16 +1,19 @@
-import React from "react";
+import React, { Children } from "react";
 import { createRoot } from "react-dom/client";
 
 const Segment = ({ children, dashed, color }) => (
   <div style={{ border: `1px ${dashed ? "dashed" : "solid" } ${color}` }}>
     {/*{console.log(children) || children}*/}
-    {children.map(
+    {Children.map(
+      children,
       (child, key) => (
         <div key={key} style={{ border: "1px solid red" }}>
-          {typeof child == "function" ? child() : child}
+          {child}
         </div>
       )
     )}
+    {Children.count(children)}
+    {/*{Children.only(children)}*/}
   </div>
 );
 
